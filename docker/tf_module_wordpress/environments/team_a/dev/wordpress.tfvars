@@ -1,2 +1,0 @@
-restart = "no"
-name = "name"
