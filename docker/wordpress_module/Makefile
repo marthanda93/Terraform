@@ -25,9 +25,14 @@ help: ## Help Section
 
 set-env: ## Validate all required parameters
 	@if [ -z $(ENV) ]; then \
-		echo "$(BOLD)$(RED)ENV was not set$(RESET)"; \
+		echo "$(BOLD)$(RED)ENV is missing$(RESET)"; \
 		exit 1; \
 	fi
+
+	@if [ -z $(TEAM) ]; then \
+		echo "$(BOLD)$(RED)TEAM is missing$(RESET)"; \
+		exit 1; \
+	fi	
 
 	@if [ ! -d "creds" ]; then \
 		mkdirs -p creds \
@@ -39,10 +44,10 @@ set-env: ## Validate all required parameters
 	fi
 
 tfvars: set-env  ## Find and store all tfvars file
-	$(eval varFiles=$(shell sh -c "find environments/$(ENV) -maxdepth 1 -name '*.tfvars'" | awk '{print "-var-file="$$0}' | perl -pe 'eof||s|$/| |'))
+	$(eval varFiles=$(shell sh -c "find environments/$(TEAM)/$(ENV) -maxdepth 1 -name '*.tfvars'" | awk '{print "-var-file="$$0}' | perl -pe 'eof||s|$/| |'))
 
 backend: set-env  ## Find backend file
-	$(eval backend=$(shell sh -c "find environments/$(ENV) -maxdepth 1 -name '*.hcl'"))
+	$(eval backend=$(shell sh -c "find environments/$(TEAM)/$(ENV) -maxdepth 1 -name '*.hcl'"))
 
 init: set-env backend  ## Initialize a working directory
 	@terraform init -backend-config=$(backend)
