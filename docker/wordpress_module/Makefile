@@ -35,12 +35,7 @@ set-env: ## Validate all required parameters
 	fi	
 
 	@if [ ! -d "creds" ]; then \
-		mkdirs -p creds \
-	fi
-
-	@if [ ! -f "creds/service_accound_$(ENV).json" ]; then \
-		echo "$(BOLD)$(RED)Credential file is missing$(RESET)"; \
-		exit 1; \
+		mkdir -p creds; \
 	fi
 
 tfvars: set-env  ## Find and store all tfvars file
