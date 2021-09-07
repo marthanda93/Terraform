@@ -1,6 +1,6 @@
 # Pulls the image
 resource "docker_image" "wordpress" {
-    name = "${var.wordpress}:${var.wordpress_version}"
+    name = "${var.app_name}:${var.wordpress_version}"
 }
 
 resource "docker_container" "wordpress" {

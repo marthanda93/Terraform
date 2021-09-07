@@ -17,14 +17,6 @@ module "mysql_setup" {
 module "wordpress_setup" {
   source = "./modules/wordpress"
   docker_network = var.docker_network
-}
-
-variable "app_restart" {
-    description = "container restart"
-    type        = string
-}
-
-variable "app_name" {
-    description = "container name"
-    type        = string
+  app_name = var.app_name
+  app_restart = var.app_restart
 }
