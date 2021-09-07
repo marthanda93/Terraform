@@ -53,6 +53,9 @@ plan: set-env tfvars  ## Create plan
 apply:  ## Apply plan
 	@terraform apply -input=false -lock=false $(TEAM)_$(ENV).tfplan
 
+destroy: set-env tfvars  ## Destroy state
+	@terraform destroy -auto-approve $(varFiles)
+
 clean: tfvars ## Clean plan
 	rm -f $(ENV).tfplan
 
