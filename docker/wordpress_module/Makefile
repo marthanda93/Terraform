@@ -57,6 +57,6 @@ destroy: set-env tfvars  ## Destroy state
 	@terraform destroy -auto-approve $(varFiles)
 
 clean: tfvars ## Clean plan
-	rm -f $(ENV).tfplan
+	rm -f $(TEAM)_$(ENV).tfplan
 
 .DEFAULT_GOAL := help
