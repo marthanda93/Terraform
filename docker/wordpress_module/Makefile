@@ -48,10 +48,10 @@ init: set-env backend  ## Initialize a working directory
 	@terraform init -backend-config=$(backend)
 
 plan: set-env tfvars  ## Create plan
-	@terraform plan $(varFiles) -out $(ENV).tfplan -input=false -lock=false
+	@terraform plan $(varFiles) -out $(TEAM)_$(ENV).tfplan -input=false -lock=false
 
 apply:  ## Apply plan
-	@terraform apply -input=false -lock=false $(ENV).tfplan
+	@terraform apply -input=false -lock=false $(TEAM)_$(ENV).tfplan
 
 clean: tfvars ## Clean plan
 	rm -f $(ENV).tfplan
