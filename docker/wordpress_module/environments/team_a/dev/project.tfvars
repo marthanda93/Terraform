@@ -1,1 +1,2 @@
 project="wordpress"
+env="dev"
