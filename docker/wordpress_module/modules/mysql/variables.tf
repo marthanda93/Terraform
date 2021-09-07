@@ -11,6 +11,16 @@ variable "docker_network" {
     type        = string
 }
 
+variable "db_restart" {
+    description = "container restart"
+    type        = string
+}
+
+variable "db_name" {
+    description = "container name"
+    type        = string
+}
+
 variable "mysql" {
     description = "MySql docker image version"
     type        = string

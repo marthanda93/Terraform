@@ -1,2 +1,2 @@
-restart = "no"
-name = "name"
+app_restart = "no"
+app_name = "wordpress"

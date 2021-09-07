@@ -11,16 +11,20 @@ variable "docker_network" {
     type        = string
 }
 
-variable "wordpress" {
-    description = "MySql docker image version"
+variable "app_restart" {
+    description = "container restart"
     type        = string
-    default     = "wordpress"
+}
+
+variable "app_name" {
+    description = "container name"
+    type        = string
 }
 
 variable "wordpress_env" {
     description = "Mysql default env"
     type        = list(string)
-    default     = [    "WORDPRESS_DB_HOST=db:3306", "WORDPRESS_DB_PASSWORD=wordpress"]
+    default     = ["WORDPRESS_DB_HOST=db:3306", "WORDPRESS_DB_PASSWORD=wordpress"]
 }
 
 variable "wordpress_port" {

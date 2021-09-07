@@ -4,9 +4,9 @@ resource "docker_image" "wordpress" {
 }
 
 resource "docker_container" "wordpress" {
-    name  = var.wordpress
+    name  = var.app_name
     image = docker_image.wordpress.latest
-    restart = "no"
+    restart = var.app_restart
     network_mode = var.docker_network
     env = var.wordpress_env
     ports {

@@ -6,9 +6,9 @@ resource "docker_image" "mysql" {
 }
 
 resource "docker_container" "db" {
-    name  = "db"
+    name  = var.db_name
     image = docker_image.mysql.name
-    restart = "no"
+    restart = var.db_restart
     network_mode = var.docker_network
     env = var.mysql_env
     mounts {

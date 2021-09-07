@@ -1,2 +1,2 @@
-restart = "no"
-name = "name"
+db_restart = "no"
+db_name = "mysql"
