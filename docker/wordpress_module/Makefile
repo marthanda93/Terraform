@@ -44,6 +44,13 @@ tfvars: set-env  ## Find and store all tfvars file
 backend: set-env  ## Find backend file
 	$(eval backend=$(shell sh -c "find environments/$(TEAM)/$(ENV) -maxdepth 1 -name '*.hcl'"))
 
+generate_config:
+	$(eval LIST=$(shell sh -c "find environments/* -type d -mindepth 1 -maxdepth 2"))
+
+	for i in $(LIST); do \
+		python3 rb.py --env_path=$$i; \
+	done
+
 init: set-env backend  ## Initialize a working directory
 	@terraform init -backend-config=$(backend)
 
